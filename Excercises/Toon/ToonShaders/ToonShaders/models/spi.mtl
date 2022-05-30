@@ -1,0 +1,41 @@
+# Blender MTL File: 'None'
+# Material Count: 3
+
+newmtl Body
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Spidey_Normal_DirectX.png
+map_Kd models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Spidey_Base_Color.png
+
+newmtl Inner_Eye
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.632812 0.632812 0.632812
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Inner_Eye_Normal_DirectX.png
+map_Kd models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Inner_Eye_Base_Color.png
+map_Ks models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Inner_Eye_Metallic.png
+
+newmtl Unreal_4_Template2
+Ns 6.732666
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Bump models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Outer_Eye_Normal_DirectX.png
+map_Kd models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Outer_Eye_Base_Color.png
+map_Ks models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Outer_Eye_Metallic.png
+map_Ns models\\spiderman\\source\\SERIOUS\\SFX\\CG\\Spiderman\\MS\\Outer_Eye_Roughness.png

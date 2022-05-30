@@ -1,0 +1,33 @@
+# Aspose.3D Wavefront OBJ Exporter
+# Copyright 2004-2022 Aspose Pty Ltd.
+# File created: 05/29/2022 17:53:40
+
+newmtl Body
+	Ka 0.2 0.2 0.2
+	Kd 1 1 1
+	d 1
+	Tr 0
+	illum 2
+	Ks 0.2 0.2 0.2
+	Ns 20
+	map_Kd Spidey_Base_Color.png
+newmtl Unreal 4 Template2
+	Ka 0.2 0.2 0.2
+	Kd 1 1 1
+	d 1
+	Tr 0
+	illum 2
+	Ks 1 1 1
+	Ns 0.67326700687408448
+	map_Kd Outer_Eye_Base_Color.png
+	map_Ks Outer_Eye_Metallic.png
+newmtl Inner Eye
+	Ka 0.2 0.2 0.2
+	Kd 1 1 1
+	d 1
+	Tr 0
+	illum 2
+	Ks 1 1 1
+	Ns 20
+	map_Kd Inner_Eye_Base_Color.png
+	map_Ks Inner_Eye_Metallic.png
