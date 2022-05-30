@@ -646,10 +646,13 @@ GLboolean init()
 	GLuint vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	loadSource(vertexShaderID, "shaders/tema3_parte2.vert");
 	std::cout << "Compilando shader de vertice ..." << std::endl;
+	GLuint vertexShaderID2 = glCreateShader(GL_VERTEX_SHADER);
+	loadSource(vertexShaderID2, "shaders/tema3_parte2.vert");
+	std::cout << "Compilando shader de vertice ..." << std::endl;
 	glCompileShader(vertexShaderID);
 	printCompileInfoLog(vertexShaderID);
 	glAttachShader(programID, vertexShaderID);
-	glAttachShader(programID2, vertexShaderID);
+	glAttachShader(programID2, vertexShaderID2);
 	glAttachShader(programID3, vertexShaderID);
 
 	GLuint fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -687,7 +690,7 @@ GLboolean init()
 	validateProgram(programID3);
 
 	// Hollow Knight
-	//numVertObj = initObj("models/spi.obj");
+	numVertObj = initObj("models/spi.obj");
 
 	numVertTeapot = initTeapot(5, glm::mat4(1.0f));
 	numVertSphere = initSphere(1.0f, 20, 30);
@@ -782,15 +785,16 @@ void display()
 	MaterialInfo emerald = {glm::vec3(0.0215f, 0.1745f, 0.0215f), glm::vec3(0.07568f, 0.61424f, 0.07568f), glm::vec3(0.633f, 0.727811f, 0.633f), 28.0f};
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	glm::mat4 Projection = glm::perspective(45.0f, 1.0f * g_Width / g_Height, 1.0f, 100.0f);
 	
 	glm::vec3 cameraPos = vec3( 5.0f * sin( xrot / 200 ) * cos( yrot / 100 ), 2.0f * cos(xrot / 200) + 3.0f, 5.0f * sin( xrot / 200 ) * sin( yrot / 100 ) );
 	glm::mat4 View = glm::lookAt(cameraPos, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
-	glm::mat4 ModelObj = glm::translate(glm::scale(glm::mat4(1.0f), vec3(0.75, 0.75, 0.75)), vec3(0.0f, 0.0f, 0.0f));
+	glm::mat4 ModelObj = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), vec3(0.75, 0.75, 0.75)), 90.0f, vec3(0.0, 1.0, 0.0)), vec3(0.0f, 0.0f, 0.0f));
 	glm::mat4 ModelPlane = glm::translate(glm::scale(glm::mat4(1.0), glm::vec3(1.0f, 1.0f, 1.0f)),vec3(0.0f, 0.0f, 0.0f));
-	glm::mat4 ModelSphere = glm::translate(glm::rotate(glm::rotate(glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f)), -90.0f, vec3(1.0, 0.0, 0.0)), 90.0f, vec3(0.0, 0.0, 1.0)), vec3(20.0f, 0.0f, -10.0f));
+	glm::mat4 ModelSphere = glm::translate(glm::rotate(glm::scale(glm::mat4(1.0f), vec3(1, 1, 1)), 90.0f, vec3(0.0, 1.0, 0.0)), vec3(0.0f, 0.0f, 0.0f));
 	glm::mat4 ModelTeapot = glm::translate(glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.5f)), vec3(-3.0f, 1.0f, 3.0f));
 	glm::mat4 ModelTorus = glm::translate(glm::rotate(glm::mat4(1.0f), -90.0f, vec3(1.0, 0.0, 0.0)), vec3(2.0f, 0.0f, 0.25f));
 
@@ -798,12 +802,19 @@ void display()
 	glm::mat4 mv;  // Model-view matrix
 	glm::mat3 nm;  // Normal matrix
 
-	if(green)
+	if (green)
+	{
 		glUseProgram(programID2);
+		glClearColor(0.93f, 0.93f, 0.93f, 0.0f);
+		
+	}
 	else if(dither)
 		glUseProgram(programID3);
 	else
+	{
 		glUseProgram(programID);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.3f);
+	}
 
 	// Booleans
 	glUniform1i(locUniformSuavizado, sombreadoSuave);
@@ -857,7 +868,7 @@ void display()
 	glUniform3fv(locUniformMaterialSpecular, 1, &(gold.specular.x));
 	glUniform1f(locUniformMaterialShininess, gold.shininess);
 	// Dibuja Esfera.
-	drawSphere();
+	//drawSphere();
 
 	// Tarea por hacer: paso al shader de las matrices y las propiedades del material (brass)
 	mv = View * ModelTeapot;
@@ -874,7 +885,7 @@ void display()
 	glUniform1f(locUniformMaterialShininess, brass.shininess);
 
 	// Dibuja Tetera
-	drawTeapot();
+	//drawTeapot();
 
 	// Tarea por hacer: paso al shader de las matrices y las propiedades del material (emerald)
 	mv = View * ModelTorus;
@@ -891,7 +902,7 @@ void display()
 	glUniform1f(locUniformMaterialShininess, emerald.shininess);
 	
 	// Dibuja Donut
-	drawTorus();
+	//drawTorus();
 
 	// Tarea por hacer: paso al shader de las matrices y las propiedades del material (perl)
 	mv = View * ModelPlane;
@@ -908,17 +919,17 @@ void display()
 	glUniform1f(locUniformMaterialShininess, perl.shininess);
 	
 	// Dibuja Plano
-	drawPlane();
+	//drawPlane();
 
 	// Dibuja Obj
 	
-	/*mvp = Projection * View * ModelObj;
+	mvp = Projection * View * ModelObj;
 	mv =  View * ModelObj;
 	nm = glm::mat3(glm::transpose(glm::inverse(mv)));
 	glUniformMatrix4fv( locUniformMVPM, 1, GL_FALSE, &mvp[0][0] );
 	glUniformMatrix4fv(locUniformMVM, 1, GL_FALSE, &mv[0][0]);
 	glUniformMatrix3fv( locUniformNM, 1, GL_FALSE, &nm[0][0] );
-	drawObj(false);*/
+	drawObj(false);
 
 	glUseProgram(0);
 

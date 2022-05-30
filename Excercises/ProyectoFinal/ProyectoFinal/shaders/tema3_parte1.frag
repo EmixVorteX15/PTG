@@ -89,7 +89,7 @@ float indexValue() {
     int y = int(mod(vTexCoord_vec2.y, 8));
     return indexMatrix8x8[(x + y * 8)] / 64.0;
 }
-/*
+
 float dither(float color) {
 	float closestColor;
 	if(color < 0.5)
@@ -107,7 +107,7 @@ float dither(float color) {
 		secondClosestColor;
     return return_color;
 }
-*/
+
 
 int paletteSize =8;
 
@@ -163,7 +163,7 @@ vec3[2] closestColors(float hue) {
     return ret;
 }
 
-vec3 dither(vec3 color) {
+/*vec3 dither(vec3 color) {
     vec3 hsl = RGBtoHSV(color);
     vec3 colors[2] = closestColors(hsl.x);
     vec3 closestColor = colors[0];
@@ -172,7 +172,7 @@ vec3 dither(vec3 color) {
     float hueDiff = hueDistance(hsl.x, closestColor.x) /
                     hueDistance(secondClosestColor.x, closestColor.x);
     return (HSVtoRGB(hueDiff < d ? closestColor : closestColor));
-}
+}*/
 
 void main()
 {
@@ -183,8 +183,8 @@ void main()
 			vec4 brickTexColor = texture(uBrickTex, vTexCoord_vec2);
 			vec4 mossTexColor = texture(uMossTex, vTexCoord_vec2);
 			vec4 grayscale = vec4(greyscale(brickTexColor.rgb, 1.0), 1.0);
-			fFragColor = vec4( dither(brickTexColor.rgb), 1.0);
-			//fFragColor = vec4( brickTexColor.rgb, 1.0);
+			//fFragColor = vec4(vec3(dither(brickTexColor.r)), 1.0);
+			fFragColor = vec4( brickTexColor.rgb, 1.0);
 		}
 		else
 		{

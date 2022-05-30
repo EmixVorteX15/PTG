@@ -103,53 +103,19 @@ vec3 ads_comic()
 	{
 		color  = uColor.brightest;
 	}
-	else if (prod_escalar <= intervals.x && prod_escalar > intervals.x+diff)
-	{
-		float prev = intervals.x+diff;
-		float val = prod_escalar - prev;
-		val /= diff;
-		halfp = halfpoint(frequency, uColor.brightest, uColor.bright);
-		color = mix(halfp ,uColor.brightest, smoothstep(prev, intervals.x, prod_escalar));
-		//color = mix(uColor.dark,uColor.bright, smoothstep(prev, intervals.y, prod_escalar));
-	}
 	else if (prod_escalar > intervals.y)
 	{
 
 		halfp = halfpoint(frequency, uColor.brightest, uColor.bright);
 		color = halfp;
-		//color = mix(uColor.dark,uColor.bright, smoothstep(prev, intervals.y, prod_escalar));
 
-	}
-	else if (prod_escalar <= intervals.y && prod_escalar > intervals.y+diff)
-	{
-		float prev = intervals.y+diff;
-		float val = prod_escalar - prev;
-		val /= diff;
-		halfp = halfpoint(frequency_low, uColor.bright, uColor.dark);
-		color = mix(halfp ,uColor.bright, smoothstep(prev, intervals.y, prod_escalar));
-		//color = mix(uColor.dark,uColor.bright, smoothstep(prev, intervals.y, prod_escalar));
 	}
 	else
 	{
 		halfp = halfpoint(frequency_low, uColor.bright, uColor.dark);
 		color = halfp ;
-		//color = uColor.dark ;
 	}
-	/*else if (prod_escalar_vista <= intervals.z && prod_escalar_vista > intervals.z+diff)
-	{
-		float prev = intervals.z+diff;
-		float val = prod_escalar_vista - prev;
-		val /= diff;
-		vec3 halfp2 = halfpoint(frequency_low, uColor.dark, uColor.bright);
-		color = mix(uColor.dark, halfp2, smoothstep(prev, intervals.z, prod_escalar_vista));
-	}
-	else
-	{
-		halfp = halfpoint(frequency_low, uColor.darkest, uColor.dark);
-		color = uColor.dark ;
-		//color = uColor.darkest;
-		//color = vec3(1.0,0.0,0.0);
-	}*/
+
 
 	if(luzFoco)
 	{
