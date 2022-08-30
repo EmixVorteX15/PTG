@@ -8,3 +8,5 @@ Feel free to check it them out and you can ask anything using my email:
 
 emixvortexgames@gmail.com
 
+## Final project ✒️
+This is the one I feel more proud of. It is located in the Toon folder and it implements an early version of what I would be doing after in my [Final Grade Project](TFG.md)
